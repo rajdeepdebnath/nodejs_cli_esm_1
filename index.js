@@ -2,10 +2,21 @@
 import chalk from 'chalk';
 import chalkAnimation from 'chalk-animation';
 import gradient from 'gradient-string';
-import inquirer from 'inquirer';
 import figlet from 'figlet';
-import { createSpinner } from 'nanospinner';
+import * as dotenv from 'dotenv';
+import { getQuizData,  displayQuizData } from './src/quiz.js';
 
-console.log(chalk.bgGreen('hellooo'));
-console.log(gradient('cyan', 'red')('Hello world!'));
-chalkAnimation.rainbow('How are you!!!');
+
+dotenv.config({
+    path: './.env.development'
+});
+
+console.log(gradient('green', 'yellow')('>> Welcome to Javascript quiz!!! <<'));
+
+let quizData = await getQuizData();
+let score = await displayQuizData(quizData);
+
+console.log(chalk.bgGreen('-: SCORE :-'));
+console.log(gradient('cyan', 'red')(figlet.textSync(score)));
+
+chalkAnimation.rainbow('Game over!!!');
