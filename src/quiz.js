@@ -4,7 +4,7 @@ import contentful from 'contentful';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-export async function getQuizData(){
+export async function getQuizData(apiKey){
 
     const spinner = createSpinner('fetching quiz data...');
 
@@ -12,7 +12,7 @@ export async function getQuizData(){
         const client = contentful.createClient({
                 space: 'f1vak80ez8so',
                 environment: 'master', // defaults to 'master' if not set
-                accessToken: process.env.CONTENTFUL_API_KEY
+                accessToken: apiKey
             })
 	
         spinner.start();
